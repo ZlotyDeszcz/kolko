@@ -1,0 +1,37 @@
+#game {
+    padding: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 250px 250px 250px;
+}
+
+.butt {
+    border: none;
+    background-color: lightBlue;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 4px 4px 4px 4px;
+    text-align: center;
+    font-size: 250px;
+    vertical-align: middle;
+}
+
+.butt:hover {
+    background-color: blue;
+    color: white;
+}
+
+#endGame {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 50px;
+    background-color: red;
+    display: none;
+}
