@@ -1,5 +1,19 @@
 let currentPlayer = 0;
 let map = {};
+var firstPlayer
+var secondPlayer
+
+// if ($('player').on("click", function(e) {
+//         e.preventDefault();
+//         currentPlayer = firstPlayer;
+//     }))
+
+//     if ($('bot').on("click", function(e) {
+//             e.preventDefault();
+//             currentPlayer = secondPlayer;
+//         }))
+
+
 
 $(document).ready(function() {
     $('.butt').on('click', function(e) {
@@ -43,9 +57,12 @@ $(document).ready(function() {
         e.preventDefault();
         $(this).parent().fadeOut();
         resetMap();
+        document.location.reload();
         return false;
     })
+
 });
+
 
 function resetMap() {
     map = {};
@@ -58,72 +75,10 @@ function resetMap() {
     $('.butt').text('');
     currentPlayer = 0;
     firstMove = true;
+
 }
 
 function checkWinner() {
-    // Sprawdzanie poziome
-    // for (let y = 0; y < 3; y++) {
-    //     let field = null,
-    //         isWin = false,
-    //         x = 0,
-    //         winner = null;
-    //     do {
-    //         if (field === null) {
-    //             field = map[x][y];
-    //             if (field === null) {
-    //                 break;
-    //             }
-
-    //             continue;
-    //         }
-
-    //         let currentField = map[x][y];
-    //         if (currentField !== field) {
-    //             isWin = false;
-    //             break;
-    //         }
-
-    //         isWin = true;
-    //         winner = currentField;
-    //         field = currentField;
-    //     } while (x++ < 3);
-
-    //     if (isWin) {
-    //         return winner;
-    //     }
-    // }
-
-    // // Sprawdzanie pionowe
-    // for (let x = 0; x < 3; x++) {
-    //     let field = null,
-    //         isWin = false,
-    //         y = 0,
-    //         winner = null;
-    //     do {
-    //         if (field === null) {
-    //             field = map[x][y];
-    //             if (field === null) {
-    //                 break;
-    //             }
-
-    //             continue;
-    //         }
-
-    //         let currentField = map[x][y];
-    //         if (currentField !== field) {
-    //             isWin = false;
-    //             break;
-    //         }
-
-    //         isWin = true;
-    //         winner = currentField;
-    //         field = currentField;
-    //     } while (y++ < 3);
-
-    //     if (isWin) {
-    //         return winner;
-    //     }
-    // }
     let isWin = false;
     for (let x = 0; x < 3; x++) {
         isWin = map[x][0] === map[x][1] && map[x][1] === map[x][2] && map[x][0] !== null;
@@ -283,6 +238,49 @@ function botAction() {
 }
 
 
+function hideBoard() {
+    document.getElementById("game1").style.display = "block";
+    document.getElementById("game2").style.display = "block";
+    document.getElementById("game3").style.display = "block";
+    document.getElementById("game4").style.display = "block";
+    document.getElementById("game5").style.display = "block";
+    document.getElementById("game6").style.display = "block";
+    document.getElementById("game7").style.display = "block";
+    document.getElementById("game8").style.display = "block";
+    document.getElementById("game9").style.display = "block";
+}
+
+function botStart() {
+    currentPlayer = 1;
+    let randomX = Math.floor(Math.random() * 3);
+    let randomY = Math.floor(Math.random() * 3);
+    doClick(randomX, randomY);
+
+    if (map[1][1] !== null) {
+        if (firstMove) {
+            if (map[1][1] === null) {
+                doClick(1, 1);
+            }
+
+
+            if (map[1][1] === 0) {
+                doClick(0, 0);
+            }
+
+            firstMove = false;
+        }
+
+    }
+
+
+    hideBoard();
+}
+
+
+
+
+resetMap();
+
 // function a() {
 //     console.log(1);
 // }
@@ -291,4 +289,66 @@ function botAction() {
 //     console.log(2);
 // }, 1000);
 
-resetMap();
+// Sprawdzanie poziome
+// for (let y = 0; y < 3; y++) {
+//     let field = null,
+//         isWin = false,
+//         x = 0,
+//         winner = null;
+//     do {
+//         if (field === null) {
+//             field = map[x][y];
+//             if (field === null) {
+//                 break;
+//             }
+
+//             continue;
+//         }
+
+//         let currentField = map[x][y];
+//         if (currentField !== field) {
+//             isWin = false;
+//             break;
+//         }
+
+//         isWin = true;
+//         winner = currentField;
+//         field = currentField;
+//     } while (x++ < 3);
+
+//     if (isWin) {
+//         return winner;
+//     }
+// }
+
+// // Sprawdzanie pionowe
+// for (let x = 0; x < 3; x++) {
+//     let field = null,
+//         isWin = false,
+//         y = 0,
+//         winner = null;
+//     do {
+//         if (field === null) {
+//             field = map[x][y];
+//             if (field === null) {
+//                 break;
+//             }
+
+//             continue;
+//         }
+
+//         let currentField = map[x][y];
+//         if (currentField !== field) {
+//             isWin = false;
+//             break;
+//         }
+
+//         isWin = true;
+//         winner = currentField;
+//         field = currentField;
+//     } while (y++ < 3);
+
+//     if (isWin) {
+//         return winner;
+//     }
+// }
